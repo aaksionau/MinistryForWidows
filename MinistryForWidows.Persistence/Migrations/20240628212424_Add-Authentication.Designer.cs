@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MinistryForWidows.Persistence;
 
@@ -11,9 +12,11 @@ using MinistryForWidows.Persistence;
 namespace MinistryForWidows.Persistence.Migrations
 {
     [DbContext(typeof(MinistryForWidowsDbContext))]
-    partial class MinistryForWidowsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240628212424_Add-Authentication")]
+    partial class AddAuthentication
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

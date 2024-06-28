@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MinistryForWidows.Contracts.Dtos;
 using MinistryForWidows.Contracts.Enums;
@@ -8,14 +8,14 @@ namespace MinistryForWidows.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<IndexModel> logger;
         private readonly IPageRepository pageRepository;
 
         public List<MenuItem> MenuItems { get; set; } = new List<MenuItem>();
 
         public IndexModel(ILogger<IndexModel> logger, IPageRepository pageRepository)
         {
-            _logger = logger;
+            this.logger = logger;
             this.pageRepository = pageRepository;
         }
 

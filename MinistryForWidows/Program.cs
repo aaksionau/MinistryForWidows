@@ -1,4 +1,5 @@
 using Azure.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MinistryForWidows.Domain.Repositories;
 using MinistryForWidows.Persistence;
@@ -21,7 +22,17 @@ builder.Services.AddDbContext<MinistryForWidowsDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services
+    .AddDefaultIdentity<IdentityUser>(options =>
+    {
+        options.SignIn.RequireConfirmedAccount = true;
+    })
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<MinistryForWidowsDbContext>();
+
 builder.Services.AddScoped<IPageRepository, PageRepository>();
+
+builder.Services.AddCoreAdmin("Administrator");
 
 
 var app = builder.Build();
@@ -39,8 +50,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.MapDefaultControllerRoute();
 
 app.Run();
