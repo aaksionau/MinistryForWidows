@@ -1,14 +1,27 @@
 using Azure.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Localization.Routing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using MinistryForWidows.Domain.Repositories;
 using MinistryForWidows.Persistence;
 using MinistryForWidows.Persistence.Repositories;
+using MinistryForWidows.RouteModelConventions;
+using MinistryForWidows.Services;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services
+    .AddRazorPages(options => 
+        {
+            options.Conventions.Add(new CultureTemplatePageRouteModelConvention());
+        })
+    .AddViewLocalization();
+
+builder.Services.AddSingleton<CommonLocalizationService>();
 
 builder.Configuration
     .AddEnvironmentVariables()
@@ -32,7 +45,18 @@ builder.Services
 
 builder.Services.AddScoped<IPageRepository, PageRepository>();
 
-builder.Services.AddCoreAdmin("Administrator");
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+     {
+        new CultureInfo("en"),
+        new CultureInfo("ru"),
+    };
+    options.DefaultRequestCulture = new RequestCulture("en");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+    options.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider { Options = options });
+});
 
 
 var app = builder.Build();
@@ -49,6 +73,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+var localizationOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>().Value;
+app.UseRequestLocalization(localizationOptions);
 
 app.UseAuthentication();
 app.UseAuthorization();

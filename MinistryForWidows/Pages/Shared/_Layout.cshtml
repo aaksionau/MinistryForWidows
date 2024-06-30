@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using MinistryForWidows.Services
+@inject CommonLocalizationService localizer
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,14 +21,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                    <vc:menu-items></vc:menu-items>
+                    <vc:culture-switcher></vc:culture-switcher>
                     <partial name="_LoginPartial" />
                 </div>
             </div>

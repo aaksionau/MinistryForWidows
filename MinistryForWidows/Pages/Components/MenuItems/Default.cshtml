@@ -1,0 +1,12 @@
+﻿@using MinistryForWidows.Services
+@inject CommonLocalizationService localizer
+@model MenuItemsModel
+
+<ul class="navbar-nav flex-grow-1">
+    @foreach (var item in Model.Pages)
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-route-culture="@Context.Request.RouteValues["culture"]" asp-page="@item.Item1">@localizer.Get(item.Item2)</a>
+        </li>
+    }
+</ul>
