@@ -12,5 +12,6 @@ namespace MinistryForWidows.Persistence
         }
 
         public DbSet<Page> Pages { get; set; }
+        public DbSet<BlogPost> BlogPosts { get; set; }
     }
 }
