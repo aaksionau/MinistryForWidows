@@ -1,6 +1,9 @@
 ﻿@using MinistryForWidows.Services
 @inject CommonLocalizationService localizer
 
+@{
+    var culture = this.Context.GetRouteValue("culture");
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +16,11 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">MinistryForWidows</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                    <img src="~/img/logo_v3.jpg" height="60" />
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -28,6 +33,34 @@
             </div>
         </nav>
     </header>
+    <div class="main">
+        <div id="typed-strings">
+            <p>
+                @localizer.Get("MainBibleVerse")<br />
+                @localizer.Get("MainBibleVerseReference")
+                @if (string.Equals(culture, "ru"))
+                {
+                    <br />
+                    @localizer.Get("MainBibleVerseCommentary");
+                }
+            </p>
+
+        </div>
+        <div class="container text-left">
+            <div class="pt-5">
+                <div class="row pt-3 pl-3 pr-3">
+                    <div class="col-3">
+                        <img src="~/img/main_widow_orphan.png" />
+                    </div>
+                    <div class="col-9">
+                        <span class="bible-verse" id="typed"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -43,6 +76,14 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        var typed = new Typed('#typed', {
+            stringsElement: '#typed-strings',
+            typeSpeed: 50,
+            contentType: 'html',
+        });
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

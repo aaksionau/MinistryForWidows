@@ -118,30 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About Us" xml:space="preserve">
-    <value>О нас</value>
+    <value>About Us</value>
   </data>
   <data name="Be Envolved" xml:space="preserve">
-    <value>Участвуйте</value>
+    <value>Be Envolved</value>
   </data>
   <data name="Contacts" xml:space="preserve">
-    <value>Контакты</value>
+    <value>Contacts</value>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value>Пожертвовать</value>
+    <value>Donate</value>
   </data>
   <data name="Geography" xml:space="preserve">
-    <value>География</value>
+    <value>Geography</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Главная</value>
+    <value>Home</value>
   </data>
   <data name="MainBibleVerse" xml:space="preserve">
-    <value>Чистое и непорочное благочестие пред Богом и Отцем есть то, чтобы призирать* сирот и вдов в их скорбях и хранить себя неоскверненным от мира.</value>
+    <value>True devotion, the kind that is pure and faultless before God the Father, is this: to care for orphans and widows in their difficulties and to keep the world from contaminating us</value>
   </data>
   <data name="MainBibleVerseCommentary" xml:space="preserve">
-    <value>(слово "призирать" означает заботиться, посещать.)</value>
+    <value />
   </data>
   <data name="MainBibleVerseReference" xml:space="preserve">
-    <value>Иакова 1.27</value>
+    <value>James 1:27</value>
   </data>
 </root>
